@@ -1,0 +1,2184 @@
+/* ============================================
+   BestBuddies Pet Grooming - Customer Dashboard Styles
+   ============================================ */
+
+/* ============================================
+   Skeleton Loading Styles (Lazy Loading)
+   ============================================ */
+
+/* Base Skeleton Animation */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Skeleton Stat Card */
+.skeleton-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+}
+
+.skeleton-stat-number {
+  height: 36px;
+  width: 60px;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-stat-label {
+  height: 14px;
+  width: 80px;
+}
+
+/* Skeleton Booking Card */
+.skeleton-booking {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skeleton-booking-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeleton-text {
+  height: 16px;
+}
+
+.skeleton-text.short { width: 40%; }
+.skeleton-text.medium { width: 60%; }
+.skeleton-text.long { width: 90%; }
+
+/* Fade in animation for loaded content */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hide skeleton when content is loaded */
+.skeleton-stat.loaded,
+.skeleton-booking.loaded {
+  display: none;
+}
+
+/* ============================================
+   Main Dashboard Styles
+   ============================================ */
+
+/* Full-width dashboard container override */
+#customerDashboard.container-lg {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 2rem !important;
+  margin: 0 !important;
+}
+
+/* Customer Layout - Edge to Edge */
+.customer-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr 300px;
+  gap: 2rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1.5rem 0;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+.mobile-menu-toggle-bar {
+  display: none;
+}
+
+.customer-layout>div {
+  width: 100%;
+}
+
+/* Sidebar Styling */
+.customer-layout .sidebar {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.sidebar-menu a.active {
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.08), rgba(72, 72, 72, 0.08));
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+/* Dropdown Navigation Styles */
+.sidebar-menu .menu-item-dropdown {
+  position: relative;
+}
+
+.sidebar-menu .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar-menu .dropdown-toggle .dropdown-arrow {
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+
+.sidebar-menu .dropdown-toggle.expanded .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.sidebar-menu .dropdown-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  margin-left: 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--gray-200);
+}
+
+.sidebar-menu .dropdown-submenu.expanded {
+  max-height: 500px;
+}
+
+.sidebar-menu .dropdown-submenu li {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-menu .dropdown-submenu a {
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.9rem;
+  display: block;
+}
+
+.sidebar-menu a:hover {
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.05), rgba(72, 72, 72, 0.05));
+}
+
+
+/* Booking Filters */
+.booking-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* Custom Status Colors for Customer Dashboard (Requested) */
+.status-pending-orange {
+  background-color: #fff7ed;
+  color: #c2410c; /* Orange-700 */
+  border: 1px solid #ffedd5;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.status-inprogress-blue {
+  background-color: #eff6ff;
+  color: #1d4ed8; /* Blue-700 */
+  border: 1px solid #dbeafe;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.status-confirmed-green {
+  background-color: #f0fdf4;
+  color: #15803d; /* Green-700 */
+  border: 1px solid #dcfce7;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.status-completed-grey {
+  background-color: #f3f4f6;
+  color: #374151; /* Gray-700 */
+  border: 1px solid #e5e7eb;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.status-cancelled-red {
+  background-color: #fef2f2;
+  color: #b91c1c; /* Red-700 */
+  border: 1px solid #fee2e2;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.booking-filter-group button {
+  border: 1px solid var(--gray-400);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  background: var(--gray-100);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.booking-filter-group button.active {
+  background: var(--gray-900);
+  color: var(--white);
+  border-color: var(--gray-900);
+}
+
+#customerBookingPagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+#customerBookingPagination .pagination-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Booking Cards */
+.booking-card {
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.booking-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Grooming Gallery */
+.journal-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.journal-photos figure {
+  margin: 0;
+  text-align: center;
+}
+
+.journal-photos img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Review Section */
+.review-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.rating-stars {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.rating-stars .star {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.2s ease;
+}
+
+.rating-stars .star:hover {
+  color: #FFD700;
+}
+
+.review-feed-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.review-card {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--white);
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.review-card figure {
+  margin: 0;
+}
+
+.review-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.review-card-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius) var(--radius) 0 0;
+  min-height: 500px;
+  width: 100%;
+  grid-auto-rows: 1fr;
+}
+
+.review-card-gallery::before {
+  content: 'Before';
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.review-card-gallery::after {
+  content: 'After';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.review-card-gallery img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+/* Mobile Responsive - Sidebar Below Header */
+@media (max-width: 768px) {
+  #customerDashboard.container-lg {
+    padding: 0 1rem !important;
+  }
+  
+  .customer-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  /* Hide mobile menu toggle bar - sidebar always visible */
+  .mobile-menu-toggle-bar {
+    display: none !important;
+  }
+
+  /* Sidebar - Full width, centered, below header */
+  .customer-layout .sidebar {
+    display: block !important;
+    order: 0 !important; /* First item - below header */
+    position: relative !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100%;
+    margin: 0 auto 1rem auto;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    background: var(--white);
+  }
+
+  /* Sidebar menu - vertical list, centered */
+  .customer-layout .sidebar .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem !important;
+    padding: 0;
+  }
+
+  .customer-layout .sidebar .sidebar-menu > li {
+    width: 100%;
+    margin-bottom: 0 !important;
+  }
+
+  .customer-layout .sidebar .sidebar-menu > li > a,
+  .customer-layout .sidebar .sidebar-menu .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem;
+    text-align: center;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    background: var(--gray-50);
+    color: var(--gray-700);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .customer-layout .sidebar .sidebar-menu > li > a:hover,
+  .customer-layout .sidebar .sidebar-menu .dropdown-toggle:hover {
+    background: var(--gray-100);
+    border-color: var(--gray-300);
+  }
+
+  .customer-layout .sidebar .sidebar-menu > li > a.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  /* Dropdown arrow positioning */
+  .customer-layout .sidebar .dropdown-toggle .dropdown-arrow {
+    margin-left: 0.5rem;
+  }
+
+  /* Dropdown submenu on mobile - full width */
+  .customer-layout .sidebar .dropdown-submenu {
+    position: relative;
+    left: auto;
+    right: auto;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    margin-top: 0.5rem;
+    margin-left: 0;
+    padding: 0.5rem;
+    border-left: none;
+  }
+
+  .customer-layout .sidebar .dropdown-submenu.expanded {
+    max-height: 500px;
+  }
+
+  .customer-layout .sidebar .dropdown-submenu li {
+    margin-bottom: 0.25rem;
+  }
+
+  .customer-layout .sidebar .dropdown-submenu a {
+    display: block;
+    padding: 0.625rem 1rem !important;
+    font-size: 0.85rem;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+  }
+
+  .customer-layout .sidebar .dropdown-submenu a:hover {
+    background: var(--gray-100);
+  }
+
+  /* Main content - comes after sidebar */
+  .customer-layout > div:nth-child(2) {
+    order: 1;
+  }
+
+  .customer-layout > div:last-child {
+    order: 2;
+  }
+
+  /* Gallery section in sidebar - hide on mobile to save space */
+  .customer-layout .sidebar > div[style*="border-top"] {
+    display: none;
+  }
+
+  .journal-photos {
+    grid-template-columns: 1fr;
+  }
+
+  /* Dashboard header adjustments */
+  .dashboard-header {
+    flex-direction: column;
+    align-items: center !important;
+    gap: 1rem;
+    padding: 1.25rem !important;
+    text-align: center;
+  }
+
+  .dashboard-header > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-header p {
+    font-size: 1rem;
+  }
+
+  .dashboard-header .btn {
+    width: auto !important;
+    min-width: 200px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  /* Quick Stats */
+  #quickStats,
+  .stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+}
+
+/* Tablet - 768px to 992px */
+@media (min-width: 769px) and (max-width: 992px) {
+  #customerDashboard.container-lg {
+    padding: 0 1.25rem !important;
+  }
+  
+  .customer-layout {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .mobile-menu-toggle-bar {
+    display: none !important;
+  }
+
+  .customer-layout .sidebar {
+    display: block !important;
+    order: 0;
+    position: relative !important;
+    top: auto !important;
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  /* Horizontal menu on tablet */
+  .customer-layout .sidebar .sidebar-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .customer-layout .sidebar .sidebar-menu > li {
+    flex: 0 1 auto;
+    margin-bottom: 0 !important;
+  }
+
+  .customer-layout .sidebar .sidebar-menu > li > a,
+  .customer-layout .sidebar .sidebar-menu .dropdown-toggle {
+    padding: 0.625rem 1rem !important;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    background: var(--gray-50);
+  }
+
+  .customer-layout .sidebar .sidebar-menu > li > a.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .customer-layout .sidebar > div[style*="border-top"] {
+    display: none;
+  }
+}
+
+@media (max-width: 1400px) and (min-width: 993px) {
+  #customerDashboard.container-lg {
+    padding: 0 1.5rem !important;
+  }
+  
+  .customer-layout {
+    grid-template-columns: 240px 1fr 260px;
+    gap: 1.5rem;
+  }
+
+  .customer-layout>div:last-child {
+    position: relative;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Quick Stats - ensure visible on tablet */
+  #quickStats,
+  .stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  #customerSlotsList>div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  /* Sidebar - full width, centered below header */
+  .customer-layout .sidebar {
+    width: 100% !important;
+    padding: 1rem;
+  }
+
+  /* Sidebar menu - stack vertically on smaller screens */
+  .customer-layout .sidebar .sidebar-menu {
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .customer-layout .sidebar .sidebar-menu > li {
+    width: 100%;
+  }
+
+  .customer-layout .sidebar .sidebar-menu > li > a,
+  .customer-layout .sidebar .sidebar-menu .dropdown-toggle {
+    width: 100%;
+    text-align: left !important;
+    justify-content: flex-start;
+  }
+
+  /* Dashboard header adjustments */
+  .dashboard-header {
+    flex-direction: column;
+    align-items: center !important;
+    gap: 1rem;
+    padding: 1.25rem !important;
+    text-align: center;
+  }
+
+  .dashboard-header .btn {
+    width: auto !important;
+    min-width: 200px;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+
+/* ============================================
+   Tablet / Mobile Landscape (481px - 768px)
+   ============================================ */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+  /* Keep layout stacked */
+  .customer-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ensure booking cards use full width but with good padding */
+  .booking-card {
+    padding: 1.5rem;
+  }
+
+  /* Allow 2 columns for journal photos */
+  .journal-photos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Ensure pagination fits */
+  #customerBookingPagination {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* ============================================
+   Mobile Phone Portrait (max 480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+  .customer-layout {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  .sidebar {
+    position: relative !important;
+    top: auto !important;
+    margin-bottom: 1rem;
+    padding: 1rem !important;
+    height: auto !important;
+  }
+
+  .sidebar h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .sidebar-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  .sidebar-menu a {
+    font-size: 0.85rem !important;
+    padding: 0.75rem !important;
+  }
+
+  /* Quick Stats - ensure visible on mobile */
+  #quickStats,
+  .stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+    padding: 0 !important;
+  }
+
+  #quickStats .stat-card,
+  .stats-grid .stat-card {
+    padding: 0.75rem !important;
+    text-align: center !important;
+    min-height: auto !important;
+  }
+
+  #quickStats .stat-card > div:first-child,
+  .stats-grid .stat-card > div:first-child {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  #quickStats .stat-value,
+  .stats-grid .stat-value {
+    font-size: 1.75rem !important;
+  }
+
+  #quickStats .stat-label,
+  .stats-grid .stat-label {
+    font-size: 0.65rem !important;
+  }
+
+  /* Booking cards */
+  .booking-card {
+    padding: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .booking-card h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .booking-card p {
+    font-size: 0.85rem !important;
+    margin: 0.25rem 0 !important;
+  }
+
+  /* Dashboard overview */
+  .dashboard-overview {
+    grid-template-columns: 1fr !important;
+  }
+
+  .stat-card {
+    padding: 1rem !important;
+  }
+
+  .stat-card h3 {
+    font-size: 0.95rem !important;
+  }
+
+  .stat-card .stat-value {
+    font-size: 1.5rem !important;
+  }
+
+  /* Journal/Gallery */
+  .journal-photos {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .journal-photo {
+    height: 150px !important;
+  }
+
+  /* Pagination */
+  #customerBookingPagination {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  #customerBookingPagination button,
+  #customerBookingPagination span {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  /* View containers */
+  #overviewView,
+  #bookingsView,
+  #calendarView,
+  #historyView,
+  #accountView {
+    padding: 0 !important;
+  }
+
+  /* Form elements */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px !important;
+    padding: 0.75rem !important;
+  }
+
+  .form-group {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .form-section-title {
+    font-size: 1rem !important;
+    margin: 1rem 0 0.75rem 0 !important;
+  }
+
+  /* Buttons */
+  .btn {
+    font-size: 0.9rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  /* Grid */
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Card adjustments */
+  .card {
+    padding: 1rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 0 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .card-body {
+    padding: 0 !important;
+  }
+
+  .card-footer {
+    padding: 0.75rem 0 !important;
+    margin-top: 0.75rem !important;
+  }
+
+  /* Calendar view */
+  #customerCalendar {
+    font-size: 0.8rem !important;
+  }
+
+  /* Slots list */
+  #customerSlotsList {
+    flex-direction: column !important;
+  }
+
+  #customerSlotsList>div {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Modal */
+  .modal-content {
+    padding: 1rem !important;
+    max-height: 80vh !important;
+  }
+
+  .modal-header {
+    padding: 1rem 0 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .modal-title {
+    font-size: 1.1rem !important;
+  }
+
+  .modal-body {
+    padding: 0 !important;
+  }
+
+  .modal-footer {
+    padding: 1rem 0 !important;
+    margin-top: 1rem !important;
+  }
+
+  .modal-footer .btn {
+    font-size: 0.85rem !important;
+    width: 100% !important;
+  }
+}
+
+
+/* ============================================
+   CALENDAR HORIZONTAL SCROLL - MOBILE
+   ============================================ */
+@media (max-width: 968px) {
+  /* Calendar container - enable horizontal scroll (specific selectors only) */
+  .mega-calendar,
+  .calendar-container,
+  #customerCalendar,
+  #customerTeamCalendar {
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+  }
+
+  /* Show scrollbar hint */
+  .mega-calendar::-webkit-scrollbar,
+  .calendar-container::-webkit-scrollbar,
+  #customerCalendar::-webkit-scrollbar,
+  #customerTeamCalendar::-webkit-scrollbar {
+    height: 8px !important;
+  }
+
+  .mega-calendar::-webkit-scrollbar-track,
+  .calendar-container::-webkit-scrollbar-track,
+  #customerCalendar::-webkit-scrollbar-track,
+  #customerTeamCalendar::-webkit-scrollbar-track {
+    background: var(--gray-100) !important;
+    border-radius: 4px !important;
+  }
+
+  .mega-calendar::-webkit-scrollbar-thumb,
+  .calendar-container::-webkit-scrollbar-thumb,
+  #customerCalendar::-webkit-scrollbar-thumb,
+  #customerTeamCalendar::-webkit-scrollbar-thumb {
+    background: var(--gray-500) !important;
+    border-radius: 4px !important;
+  }
+
+  .mega-calendar::-webkit-scrollbar-thumb:hover,
+  .calendar-container::-webkit-scrollbar-thumb:hover,
+  #customerCalendar::-webkit-scrollbar-thumb:hover,
+  #customerTeamCalendar::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-700) !important;
+  }
+
+  /* Calendar grid - minimum width to ensure all 7 days visible */
+  .calendar-grid,
+  .calendar-grid-head,
+  .calendar-grid-body {
+    min-width: 420px !important;
+    width: max-content !important;
+  }
+
+  /* Calendar cells - fixed minimum size */
+  .calendar-cell {
+    min-width: 55px !important;
+    min-height: 60px !important;
+  }
+
+  /* Wide content containers - horizontal scroll */
+  .step-content,
+  .card-body {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Tables and wide content */
+  .table-container,
+  table {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  table {
+    min-width: 500px !important;
+  }
+}
+
+/* ============================================
+   PROFILE VIEW - Mobile Responsive
+   ============================================ */
+#profileView > div[style*="grid-template-columns"] {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (max-width: 992px) {
+  /* Stack profile cards on tablet and mobile */
+  #profileView > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  #profileView .card {
+    width: 100% !important;
+  }
+  
+  /* Profile stats grid */
+  #profileStats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* Calendar view stats */
+  #calendarViewStats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #profileView > div[style*="grid-template-columns"] {
+    gap: 1rem !important;
+  }
+  
+  #profileStats {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  
+  #calendarViewStats {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Weight category chips - wrap better */
+  #profileView .addon-chip {
+    flex: 1 1 45% !important;
+    min-width: 120px;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 400px) {
+  .calendar-grid,
+  .calendar-grid-head,
+  .calendar-grid-body {
+    min-width: 380px !important;
+  }
+
+  .calendar-cell {
+    min-width: 48px !important;
+    min-height: 55px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .calendar-cell .day-number {
+    font-size: 0.9rem !important;
+  }
+
+  .calendar-cell .slots-info {
+    font-size: 0.6rem !important;
+  }
+}
+
+
+/* ============================================
+   BOOKING NOTIFICATION TOAST ANIMATIONS
+   ============================================ */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.booking-notification-toast {
+  animation: slideInRight 0.3s ease-out;
+}
+
+
+/* ============================================
+   CUSTOMER NOTIFICATION BELL STYLES
+   ============================================ */
+@keyframes bellShake {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(15deg); }
+  40% { transform: rotate(-15deg); }
+  60% { transform: rotate(10deg); }
+  80% { transform: rotate(-10deg); }
+}
+
+#customerNotificationBell {
+  transition: transform 0.2s ease;
+}
+
+#customerNotificationBell:hover {
+  transform: scale(1.1);
+}
+
+#customerNotificationBell:hover i {
+  color: var(--primary) !important;
+}
+
+#customerNotificationBadge {
+  animation: pulse 2s infinite;
+}
+
+#customerNotificationPanel {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDownCustomer {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsive for notification panel */
+@media (max-width: 768px) {
+  #customerNotificationPanel {
+    width: calc(100% - 40px) !important;
+    right: 20px !important;
+    left: 20px !important;
+  }
+}
+/* ============================================
+   Customer Notification Bell in Header
+   ============================================ */
+
+/* Desktop notification bell styling */
+#customerNotificationBell {
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+#customerNotificationBell:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
+
+#customerNotificationBell i {
+  transition: color 0.3s ease;
+}
+
+#customerNotificationBell:hover i {
+  color: var(--primary) !important;
+}
+
+/* Mobile notification bell styling */
+#customerNotificationBellMobile {
+  transition: all 0.3s ease;
+  border-radius: var(--radius-sm);
+}
+
+#customerNotificationBellMobile:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Bell shake animation */
+@keyframes bellShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* Notification badge positioning */
+#customerNotificationBadge,
+#customerNotificationBadgeMobile {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  /* Notification panel - bottom sheet overlay above content */
+  #customerNotificationPanel {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 55vh !important;
+    border-radius: 16px 16px 0 0 !important;
+    z-index: 99999 !important;
+    box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.25) !important;
+    animation: slideUpPanel 0.3s ease-out !important;
+  }
+  
+  #customerNotificationPanel > div:first-child {
+    border-radius: 16px 16px 0 0 !important;
+  }
+  
+  #customerNotificationList {
+    max-height: calc(55vh - 60px) !important;
+  }
+  
+  @keyframes slideUpPanel {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+
+/* ============================================
+   TABLE RESPONSIVE WRAPPER - Mobile Horizontal Scroll
+   ============================================ */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-200);
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+}
+
+.table-wrapper thead {
+  background: var(--gray-900);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table-wrapper th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.table-wrapper td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 0.9rem;
+}
+
+.table-wrapper tbody tr:hover {
+  background: var(--gray-50);
+}
+
+.table-wrapper tbody tr:nth-child(even) {
+  background: var(--gray-50);
+}
+
+/* Mobile table adjustments */
+@media (max-width: 768px) {
+  .table-wrapper {
+    border: none;
+    border-radius: 0;
+  }
+
+  .table-wrapper table {
+    min-width: 600px;
+  }
+
+  .table-wrapper th,
+  .table-wrapper td {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .table-wrapper th {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-wrapper table {
+    min-width: 550px;
+  }
+
+  .table-wrapper th,
+  .table-wrapper td {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .table-wrapper th {
+    font-size: 0.7rem;
+  }
+}
+
+/* ============================================
+   BOTTOM NAVIGATION - Mobile Only
+   ============================================ */
+
+/* ============================================
+   LIVE COUNTDOWN BANNER (All Screen Sizes)
+   ============================================ */
+.mobile-countdown-banner {
+  display: block;
+  background: linear-gradient(135deg, #ffe0b2 0%, #ffcc80 100%);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hide when JS sets display: none */
+.mobile-countdown-banner[style*="display: none"] {
+  display: none !important;
+}
+
+.mobile-countdown-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+.mobile-countdown-banner.pending {
+  background: linear-gradient(135deg, #ffe0b2 0%, #ffcc80 100%);
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);
+}
+
+.mobile-countdown-banner.urgent {
+  background: linear-gradient(135deg, #ffcdd2 0%, #ef9a9a 100%);
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.2);
+  animation: urgentPulse 2s ease-in-out infinite;
+}
+
+@keyframes urgentPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+}
+
+.countdown-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.countdown-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.countdown-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.countdown-pet {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e65100;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-countdown-banner.pending .countdown-pet {
+  color: #e65100;
+}
+
+.mobile-countdown-banner.urgent .countdown-pet {
+  color: #b71c1c;
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 32px;
+}
+
+.countdown-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #e65100;
+  line-height: 1;
+  font-family: 'Inter', monospace;
+}
+
+.mobile-countdown-banner.pending .countdown-value {
+  color: #e65100;
+}
+
+.mobile-countdown-banner.urgent .countdown-value {
+  color: #c62828;
+}
+
+.countdown-unit {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.countdown-separator {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.3);
+  margin: 0 0.1rem;
+  align-self: flex-start;
+  margin-top: 0.1rem;
+}
+
+.countdown-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f57c00;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+.mobile-countdown-banner.pending .status-dot {
+  background: #f57c00;
+}
+
+.mobile-countdown-banner.urgent .status-dot {
+  background: #d32f2f;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.9); }
+}
+
+#countdownStatusText {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Mobile adjustments for countdown banner */
+@media (max-width: 768px) {
+  .mobile-countdown-banner {
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .countdown-icon {
+    font-size: 1.75rem;
+  }
+  
+  .countdown-pet {
+    font-size: 0.95rem;
+  }
+  
+  .countdown-value {
+    font-size: 1.1rem;
+  }
+  
+  /* Fix hamburger menu button - bordered style with lines */
+  body.customer-dashboard-page header .menu-toggle,
+  body:has(#customerDashboard) header .menu-toggle {
+    background: transparent !important;
+    color: #000 !important;
+    border: 2px solid #000 !important;
+    border-radius: 6px !important;
+    font-size: 1.5rem !important;
+    padding: 0.3rem 0.5rem !important;
+    line-height: 1 !important;
+  }
+  
+  body.customer-dashboard-page header .menu-toggle:hover,
+  body:has(#customerDashboard) header .menu-toggle:hover {
+    background: rgba(0, 0, 0, 0.05) !important;
+  }
+  
+  /* Semi-transparent mobile drawer - frosted glass effect */
+  body.customer-dashboard-page .mobile-drawer,
+  body:has(#customerDashboard) .mobile-drawer {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    width: 200px !important;
+    max-width: 60vw !important;
+  }
+  
+  /* Make drawer header also transparent */
+  body.customer-dashboard-page .mobile-drawer-header,
+  body:has(#customerDashboard) .mobile-drawer-header {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    padding: 0.75rem 1rem !important;
+  }
+  
+  /* Hide logo text in drawer - only show logo image */
+  body.customer-dashboard-page .mobile-drawer-header .logo-text,
+  body:has(#customerDashboard) .mobile-drawer-header .logo-text {
+    display: none !important;
+  }
+  
+  /* Make drawer links compact */
+  body.customer-dashboard-page .mobile-drawer-links,
+  body:has(#customerDashboard) .mobile-drawer-links {
+    background: transparent !important;
+    padding: 0.75rem !important;
+  }
+  
+  body.customer-dashboard-page .mobile-drawer-links li a,
+  body:has(#customerDashboard) .mobile-drawer-links li a {
+    background: transparent !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+  }
+  
+  /* Blurred overlay when drawer is open */
+  body.customer-dashboard-page .mobile-drawer-overlay.active,
+  body:has(#customerDashboard) .mobile-drawer-overlay.active {
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+  }
+}
+
+/* ============================================
+   MOBILE NOTIFICATION BAR
+   ============================================ */
+.mobile-notification-bar {
+  display: none;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--gray-200);
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.notification-bar-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  pointer-events: auto;
+}
+
+.notification-bar-content:active {
+  transform: scale(0.98);
+}
+
+.notification-bar-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notification-bar-icon i {
+  font-size: 1.1rem;
+  color: #f57c00;
+}
+
+.notification-bar-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #dc3545;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 10px;
+  min-width: 16px;
+  text-align: center;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.notification-bar-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-bar-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.notification-bar-preview {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.1rem;
+}
+
+.notification-bar-arrow {
+  color: var(--gray-400);
+  font-size: 1rem;
+}
+
+/* Has notifications state */
+.mobile-notification-bar.has-notifications .notification-bar-icon {
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+}
+
+.mobile-notification-bar.has-notifications .notification-bar-icon i {
+  color: #d32f2f;
+  animation: bellRing 0.5s ease-in-out;
+}
+
+@keyframes bellRing {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(10deg); }
+  75% { transform: rotate(-10deg); }
+}
+
+.mobile-notification-bar.has-notifications .notification-bar-preview {
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+/* Show notification bar only on mobile */
+@media (max-width: 768px) {
+  .mobile-notification-bar {
+    display: block;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+  .countdown-content {
+    flex-wrap: wrap;
+  }
+  
+  .countdown-timer {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  
+  .countdown-info {
+    flex: 1;
+  }
+}
+
+/* ============================================
+   CUSTOMER BOTTOM NAVIGATION - Mobile Only
+   ============================================ */
+
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0.5rem 0;
+  padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+.bottom-nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  color: var(--gray-500);
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  min-width: 60px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.bottom-nav-item:hover,
+.bottom-nav-item:active {
+  color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.bottom-nav-item.active {
+  color: #4CAF50;
+}
+
+.bottom-nav-item .nav-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+  line-height: 1;
+}
+
+.bottom-nav-item .nav-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70px;
+}
+
+/* More menu popup */
+.customer-more-menu {
+  display: none;
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem;
+  z-index: 1001;
+  min-width: 200px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.customer-more-menu.active {
+  display: block;
+  animation: slideUp 0.2s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.customer-more-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  color: var(--gray-700);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.customer-more-menu-item:hover,
+.customer-more-menu-item:active {
+  background: var(--gray-100);
+}
+
+.customer-more-menu-item .menu-icon {
+  font-size: 1.2rem;
+  width: 24px;
+  text-align: center;
+}
+
+/* Show bottom nav on mobile, hide sidebar menu */
+@media (max-width: 768px) {
+  .bottom-nav {
+    display: block;
+  }
+
+  /* Hide desktop-only elements on mobile */
+  #teamCalendarCard {
+    display: none !important;
+  }
+
+  /* Show mobile booking history in home tab */
+  #mobileBookingHistorySection {
+    display: block !important;
+  }
+
+  /* Hide the sidebar menu (navigation list) on mobile - bottom nav replaces it */
+  .customer-layout .sidebar .sidebar-menu {
+    display: none !important;
+  }
+
+  /* Show left sidebar on mobile - but only the countdown will be visible */
+  .customer-layout .sidebar:first-child {
+    display: block !important;
+    position: relative !important;
+    top: auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Sidebar countdown - JS controls display via inline style */
+  .customer-layout .sidebar:first-child .sidebar-countdown {
+    margin: 0 0 1rem 0;
+  }
+
+  /* Adjust main content padding for bottom nav */
+  .customer-layout {
+    padding-bottom: 80px !important;
+  }
+
+  /* Hide right sidebar on mobile too for cleaner look */
+  .customer-layout .sidebar:last-child {
+    display: none !important;
+  }
+
+  footer {
+    padding-bottom: 90px !important;
+  }
+}
+
+
+/* ============================================
+   LIVE COUNTDOWN TIMER STYLES
+   ============================================ */
+.live-countdown-container {
+  transition: all 0.3s ease;
+}
+
+.live-countdown-container.urgent {
+  animation: urgentCountdownPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes urgentCountdownPulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(198, 40, 40, 0.2);
+  }
+  50% { 
+    transform: scale(1.01);
+    box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+  }
+}
+
+.live-countdown-timer {
+  font-variant-numeric: tabular-nums;
+}
+
+.live-countdown-timer span[class^="countdown-"] {
+  transition: all 0.2s ease;
+}
+
+/* Tick animation for seconds */
+.live-countdown-container:not(.expired) .countdown-secs {
+  animation: tickPulse 1s ease-in-out infinite;
+}
+
+@keyframes tickPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Responsive adjustments for countdown */
+@media (max-width: 480px) {
+  .live-countdown-container {
+    padding: 0.6rem 0.75rem !important;
+  }
+  
+  .live-countdown-timer {
+    font-size: 0.95rem !important;
+  }
+  
+  .live-countdown-timer span[class^="countdown-"] {
+    padding: 0.2rem 0.3rem !important;
+    min-width: 24px !important;
+  }
+}
+
+
+/* ============================================
+   SIDEBAR LIVE COUNTDOWN (Mobile)
+   ============================================ */
+.sidebar-countdown {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ffcc80;
+}
+
+.sidebar-countdown.urgent {
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  border-color: #ef9a9a;
+  animation: sidebarUrgentPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes sidebarUrgentPulse {
+  0%, 100% { box-shadow: 0 2px 8px rgba(198, 40, 40, 0.2); }
+  50% { box-shadow: 0 4px 16px rgba(198, 40, 40, 0.35); }
+}
+
+.sidebar-countdown-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-countdown-icon {
+  font-size: 1.25rem;
+}
+
+.sidebar-countdown-label {
+  font-weight: 700;
+  color: #e65100;
+  font-size: 0.9rem;
+}
+
+.sidebar-countdown.urgent .sidebar-countdown-label {
+  color: #c62828;
+}
+
+.sidebar-countdown-pet {
+  font-size: 0.85rem;
+  color: #5d4037;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.sidebar-countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-countdown-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  min-width: 42px;
+}
+
+.sidebar-countdown-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #e65100;
+  font-family: 'Inter', monospace;
+  line-height: 1;
+}
+
+.sidebar-countdown.urgent .sidebar-countdown-value {
+  color: #c62828;
+}
+
+.sidebar-countdown-unit {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  margin-top: 0.15rem;
+}
+
+.sidebar-countdown-sep {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.3);
+  margin: 0 0.1rem;
+}
+
+.sidebar-countdown-expires {
+  font-size: 0.7rem;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+/* Tick animation for seconds */
+.sidebar-countdown:not(.expired) #sidebarCountdownSeconds {
+  animation: sidebarTickPulse 1s ease-in-out infinite;
+}
+
+@keyframes sidebarTickPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Sidebar countdown visibility - controlled by JS */
+/* On mobile: show only when JS sets display:block */
+/* On desktop: show in sidebar, on mobile: show in sidebar */
+@media (max-width: 768px) {
+  .sidebar-countdown {
+    /* Mobile: show in sidebar */
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar-countdown {
+    /* Desktop: also show in sidebar */
+  }
+}

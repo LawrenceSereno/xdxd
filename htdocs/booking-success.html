@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <title>Booking Success - BestBuddies Pet Grooming</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/booking-success.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a class="logo" href="index.html">
+        <img src="assets/logo.png" alt="BestBuddies logo" class="logo-mark">
+        <div class="logo-text">
+          <span class="logo-wordmark">BestBuddies Pet Grooming</span>
+        </div>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-drawer-overlay"></div>
+    <div class="mobile-drawer">
+      <div class="mobile-drawer-header">
+        <a class="logo" href="index.html" style="display: flex; align-items: center; gap: 0.85rem;">
+          <img src="assets/logo.png" alt="BestBuddies logo" class="logo-mark" style="width: 48px; height: 48px;">
+          <div class="logo-text">
+            <span class="logo-wordmark" style="font-size: 1rem;">BestBuddies Pet Grooming</span>
+          </div>
+        </a>
+        <button class="mobile-drawer-close" aria-label="Close menu">×</button>
+      </div>
+      <ul class="mobile-drawer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="container-sm">
+      <div class="success-message fade-in">
+        <div class="success-icon">✓</div>
+        <h2>Booking Request Submitted!</h2>
+        <p style="color: var(--gray-600); margin-bottom: 2rem;">
+          Your appointment request has been received. We'll confirm it shortly.
+        </p>
+
+        <div class="card" style="max-width: 600px; margin: 0 auto;">
+          <div class="card-header">
+            <h3 class="card-title">Booking Details</h3>
+          </div>
+          <div class="card-body" id="bookingDetails">
+            <!-- Booking details will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Payment Options Section -->
+        <div class="card" style="margin-top: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;" id="paymentOptionsCard">
+          <div class="card-header" style="background: linear-gradient(135deg, #4CAF50, #2e7d32); color: white;">
+            <h3 class="card-title" style="color: white;">💳 Payment Options</h3>
+          </div>
+          <div class="card-body">
+            <p style="color: var(--gray-600); margin-bottom: 1rem;">
+              To confirm your booking, please pay the <strong>₱100 booking fee</strong> via GCash.
+            </p>
+            
+            <!-- GCash Payment Info -->
+            <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 2px solid #2196F3;">
+              <p style="font-weight: 600; margin-bottom: 0.5rem;">📱 GCash Number:</p>
+              <p style="font-size: 1.5rem; font-weight: 700; color: #1565c0; margin: 0;" id="gcashNumberDisplay">0951 986 5882</p>
+              <p style="font-size: 0.85rem; color: var(--gray-600); margin-top: 0.5rem;" id="gcashAccountName">Account Name: Yen's Pet Shop</p>
+              
+              <!-- QR Code Image Section -->
+              <div id="paymentQRSection" style="margin-top: 1rem; text-align: center; display: none;">
+                <p style="font-size: 0.9rem; color: var(--gray-700); margin-bottom: 0.5rem;">📷 Scan QR Code to Pay:</p>
+                <img id="paymentQRImage" src="" alt="Payment QR Code" style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 2px solid #2196F3; cursor: pointer;" onclick="openQRLightbox()">
+              </div>
+            </div>
+
+            <!-- Policy Notice -->
+            <div style="background: #fff3e0; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #ff9800;">
+              <p style="font-weight: 600; color: #e65100; margin-bottom: 0.5rem;">⚠️ Payment Required</p>
+              <div style="font-size: 0.85rem; color: var(--gray-700); line-height: 1.5;">
+                <p style="margin: 0;">To <strong>confirm your booking slot</strong>, please pay the <strong>₱100 booking fee</strong> via GCash and upload your payment proof. Your booking will only be confirmed after admin reviews your payment.</p>
+              </div>
+            </div>
+
+            <!-- Payment Buttons - Pay Now and Pay Later Options -->
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;" id="paymentButtons">
+              <button class="btn btn-primary" style="flex: 1; min-width: 200px; padding: 1rem; font-size: 1rem;" onclick="handlePayNow()">
+                💰 Pay Now - Upload Proof
+              </button>
+              <button class="btn btn-outline" style="flex: 1; min-width: 200px; padding: 1rem; font-size: 1rem;" onclick="handlePayLater()">
+                ⏰ Pay Later 
+              </button>
+            </div>
+
+            <!-- Upload Proof Section (hidden by default) -->
+            <div id="uploadProofSection" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 12px; border: 2px solid #4CAF50;">
+              <p style="font-weight: 600; color: #2e7d32; margin-bottom: 1.5rem; font-size: 1.1rem;">📤 Upload Proof of Payment</p>
+              
+              <!-- File Input with Custom Styling -->
+              <div style="margin-bottom: 1.5rem;">
+                <input type="file" id="proofOfPaymentInput" accept="image/*" style="display: none;" onchange="handleProofFileSelect(this)">
+                <button type="button" onclick="document.getElementById('proofOfPaymentInput').click()" 
+                  style="width: 100%; padding: 1rem; background: white; border: 2px dashed #4CAF50; border-radius: 8px; cursor: pointer; font-weight: 600; color: #2e7d32; font-size: 1rem; transition: all 0.3s ease;">
+                  📁 Choose Payment Proof Image
+                </button>
+                <p style="font-size: 0.85rem; color: #2e7d32; margin-top: 0.5rem; text-align: center;">JPG, PNG, or GIF (Max 10MB)</p>
+              </div>
+              
+              <!-- Image Preview -->
+              <div id="proofPreview" style="display: none; margin-bottom: 1.5rem; text-align: center;">
+                <p style="font-size: 0.9rem; color: #2e7d32; margin-bottom: 0.75rem; font-weight: 500;">Preview:</p>
+                <div style="background: white; padding: 1rem; border-radius: 8px; display: inline-block;">
+                  <img id="proofPreviewImg" style="max-width: 200px; max-height: 150px; border-radius: 8px; border: 2px solid #4CAF50;">
+                </div>
+              </div>
+              
+              <!-- Submit Button -->
+              <button class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem; font-weight: 600;" onclick="submitProofOfPayment()" id="submitProofBtn">
+                ✅ Submit Payment Proof
+              </button>
+              <p style="font-size: 0.85rem; color: #2e7d32; margin-top: 1rem; text-align: center; font-weight: 500;">
+                After uploading, your booking will be confirmed once we verify the payment.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;">
+          <h3>Important Reminders</h3>
+          <div style="color:var(--gray-600); font-size:0.9rem;">
+            <div style="margin-bottom: 0.75rem;"> No refunds for no-shows. Rescheduling requires a new booking.</div>
+            <div style="margin-bottom: 0.75rem;"> Three warnings = close monitoring. Five warnings trigger an automatic
+              temporary ban.</div>
+            <div style="margin-bottom: 0.75rem;"> Need to lift a ban? Visit the shop or email yenspetshop@gmail.com with
+              proof of payment.</div>
+          </div>
+          <div style="margin-top: 1.5rem; padding: 1rem; background: var(--gray-100); border-radius: var(--radius-sm);">
+            <h4 style="margin-bottom: 0.5rem;">📞 Contact Us to Accept Your Booking</h4>
+            <p style="color: var(--gray-700); font-size: 0.95rem; margin-bottom: 0.5rem;">
+              To confirm and accept your booking, please contact us at:
+            </p>
+            <p style="font-size: 1.125rem; font-weight: 600; color: #000;">
+              <a href="tel:09519865882" style="color: #000; text-decoration: none;">0951 986 5882</a> <br>
+              <a href="mailto:yenspetshop@gmail.com"
+                style="color: #000; text-decoration: none;">yenspetshop@gmail.com</a>
+            </p>
+            <p style="color: var(--gray-600); font-size: 0.85rem; margin-top: 0.5rem;">
+              Our team will review your booking request and confirm it shortly.
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;" id="successActions">
+          <a href="customer-dashboard.html" class="btn btn-primary" id="backToDashboardBtn" onclick="sessionStorage.removeItem('lastBooking')">Back to Dashboard</a>
+          <a href="booking.html" class="btn btn-outline" id="bookAnotherBtn" onclick="sessionStorage.removeItem('lastBooking')">Book Another Appointment</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Yen's Pet Shop. All rights reserved.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem;">📞 0951 986 5882 | ✉️ yenspetshop@gmail.com</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/cloudinary-helper.js"></script>
+  <script src="js/adaptive-performance.js"></script>
+  <!-- IMPORTANT: Do NOT load auth.js on booking-success page -->
+  <!-- auth.js redirects to dashboard after login, which breaks the payment flow -->
+  <!-- <script type="module" src="js/auth.js"></script> -->
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/firebase-db.js"></script>
+  <script type="module">
+    // Import payment settings function
+    import { getPaymentSettings } from './js/firebase-db.js';
+    
+    // Make it globally available
+    window.firebaseGetPaymentSettings = getPaymentSettings;
+    
+    // Load payment settings after page is fully ready
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (typeof loadPaymentSettings === 'function') {
+          console.log('[PaymentSettings] Loading payment settings...');
+          loadPaymentSettings();
+        } else {
+          console.warn('[PaymentSettings] loadPaymentSettings function not found');
+        }
+      }, 1000);
+    });
+  </script>
+  <script>
+    // Global variables
+    let currentBooking = null;
+    let countdownInterval = null;
+
+    /**
+     * Check if Pay Later option should be available
+     * Pay Later only available for advance bookings (2+ hours before appointment)
+     */
+    function isPayLaterAvailable(booking) {
+      if (!booking || !booking.date || !booking.time) {
+        return false;
+      }
+      
+      // Parse booking time
+      let bookingHour = 0;
+      let bookingMinute = 0;
+      
+      // Handle time ranges like "9am-12pm" - use START time
+      let timeStr = booking.time;
+      if (timeStr.includes('-')) {
+        timeStr = timeStr.split('-')[0].trim();
+      }
+      
+      // Parse time format
+      const timeMatch = timeStr.match(/(\d{1,2}):?(\d{2})?\s*(am|pm)?/i);
+      if (timeMatch) {
+        bookingHour = parseInt(timeMatch[1], 10);
+        bookingMinute = timeMatch[2] ? parseInt(timeMatch[2], 10) : 0;
+        
+        const isPM = timeMatch[3] && /pm/i.test(timeMatch[3]);
+        if (isPM && bookingHour !== 12) {
+          bookingHour += 12;
+        } else if (!isPM && bookingHour === 12) {
+          bookingHour = 0;
+        }
+      }
+      
+      // Create appointment datetime
+      const appointmentDate = new Date(booking.date);
+      appointmentDate.setHours(bookingHour, bookingMinute, 0, 0);
+      
+      // Calculate time difference
+      const now = new Date();
+      const timeDiff = appointmentDate.getTime() - now.getTime();
+      const hoursDiff = timeDiff / (1000 * 60 * 60);
+      
+      // Pay Later available only if booking is at least 2 hours in advance
+      return hoursDiff >= 2;
+    }
+
+    // Helper function for escaping HTML
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Handle Pay Now button click
+    function handlePayNow() {
+      const paymentButtons = document.getElementById('paymentButtons');
+      const uploadSection = document.getElementById('uploadProofSection');
+      const countdownSection = document.getElementById('countdownSection');
+      
+      if (paymentButtons) paymentButtons.style.display = 'none';
+      if (countdownSection) countdownSection.style.display = 'none';
+      if (uploadSection) uploadSection.style.display = 'block';
+    }
+
+    // Handle proof file selection and preview
+    function handleProofFileSelect(fileInput) {
+      const file = fileInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const preview = document.getElementById('proofPreview');
+          const previewImg = document.getElementById('proofPreviewImg');
+          if (preview && previewImg) {
+            previewImg.src = event.target.result;
+            preview.style.display = 'block';
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Handle Pay Later button click - auto-redirect to dashboard
+    async function handlePayLater() {
+      // Update booking in database to mark as pay later
+      if (currentBooking) {
+        try {
+          currentBooking.paymentChoice = 'payLater';
+          currentBooking.payLaterSelectedAt = Date.now();
+          
+          // Update in Firebase
+          if (typeof window.firebaseSaveBookings === 'function') {
+            const bookings = await window.firebaseGetBookings();
+            const idx = bookings.findIndex(b => b.id === currentBooking.id);
+            if (idx >= 0) {
+              bookings[idx] = currentBooking;
+              await window.firebaseSaveBookings(bookings);
+            }
+          }
+          
+          // Update sessionStorage
+          sessionStorage.setItem('lastBooking', JSON.stringify(currentBooking));
+        } catch (error) {
+          console.warn('Could not update booking with payment choice:', error);
+        }
+      }
+      
+      // Hide payment buttons
+      const paymentButtons = document.getElementById('paymentButtons');
+      if (paymentButtons) {
+        paymentButtons.style.display = 'none';
+      }
+      
+      // Show success message with countdown
+      const paymentSection = document.getElementById('paymentSection');
+      if (paymentSection) {
+        paymentSection.innerHTML = `
+          <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 12px; padding: 2rem; text-align: center; border: 2px solid #4CAF50;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+            <h3 style="color: #2e7d32; margin-bottom: 0.5rem;">Pay Later Selected</h3>
+            <p style="color: var(--gray-600); margin-bottom: 1.5rem;">
+              You can pay the ₱100 booking fee when you arrive at the shop before your appointment.
+            </p>
+            <p style="color: #2e7d32; font-weight: 600; margin-bottom: 1rem;">
+              Redirecting to dashboard in <span id="redirectCountdown">3</span> seconds...
+            </p>
+            <a href="customer-dashboard.html" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1rem; text-decoration: none; display: inline-block;">
+              🏠 Go to Dashboard Now
+            </a>
+          </div>
+        `;
+      }
+      
+      // Auto-redirect after 3 seconds
+      let countdown = 3;
+      const countdownEl = document.getElementById('redirectCountdown');
+      const countdownInterval = setInterval(() => {
+        countdown--;
+        if (countdownEl) {
+          countdownEl.textContent = countdown;
+        }
+        if (countdown <= 0) {
+          clearInterval(countdownInterval);
+          window.location.href = 'customer-dashboard.html';
+        }
+      }, 1000);
+      
+      // Show success alert
+      if (typeof customAlert !== 'undefined') {
+        customAlert.success('Pay Later Selected', 'Redirecting to your dashboard...');
+      }
+    }
+
+    // Start countdown timer based on booking time
+    function startCountdownTimer(booking) {
+      if (!booking || !booking.date || !booking.time) {
+        console.warn('Cannot start countdown - missing booking date/time');
+        return;
+      }
+      
+      // Parse booking time
+      let bookingHour = 0;
+      let bookingMinute = 0;
+      const timeMatch = booking.time.match(/(\d{1,2}):?(\d{2})?\s*(am|pm)?/i);
+      if (timeMatch) {
+        bookingHour = parseInt(timeMatch[1], 10);
+        bookingMinute = timeMatch[2] ? parseInt(timeMatch[2], 10) : 0;
+        const isPM = /pm/i.test(booking.time);
+        if (isPM && bookingHour !== 12) bookingHour += 12;
+        else if (!/pm/i.test(booking.time) && /am/i.test(booking.time) && bookingHour === 12) bookingHour = 0;
+      }
+      
+      // Create target date (booking appointment time)
+      const targetDate = new Date(booking.date);
+      targetDate.setHours(bookingHour, bookingMinute, 0, 0);
+      
+      // Update expires text
+      const expiresText = document.getElementById('expiresAtText');
+      if (expiresText) {
+        const options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        expiresText.textContent = `Expires: ${targetDate.toLocaleDateString('en-US', options)}`;
+      }
+      
+      // Update countdown every second
+      function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate.getTime() - now.getTime();
+        
+        const hoursEl = document.getElementById('countdownHours');
+        const minutesEl = document.getElementById('countdownMinutes');
+        const secondsEl = document.getElementById('countdownSeconds');
+        
+        if (diff <= 0) {
+          // Expired
+          if (hoursEl) hoursEl.textContent = '00';
+          if (minutesEl) minutesEl.textContent = '00';
+          if (secondsEl) secondsEl.textContent = '00';
+          
+          if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+          }
+          
+          // Show expired message
+          const countdownSection = document.getElementById('countdownSection');
+          if (countdownSection) {
+            countdownSection.style.background = '#ffebee';
+            countdownSection.style.borderColor = '#f44336';
+            countdownSection.innerHTML = `
+              <p style="font-weight: 600; color: #c62828; margin-bottom: 0.5rem;">❌ Booking Expired</p>
+              <p style="color: var(--gray-700); font-size: 0.9rem;">
+                Your booking has been automatically cancelled due to non-payment.
+              </p>
+              <a href="booking.html" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                📅 Book New Appointment
+              </a>
+            `;
+          }
+          return;
+        }
+        
+        // Calculate time components
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        // Update display
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+        
+        // Change color when urgent (less than 1 hour)
+        if (hours < 1) {
+          const countdownSection = document.getElementById('countdownSection');
+          if (countdownSection) {
+            countdownSection.style.background = '#ffebee';
+            countdownSection.style.borderColor = '#f44336';
+          }
+          if (hoursEl) hoursEl.style.color = '#c62828';
+          if (minutesEl) minutesEl.style.color = '#c62828';
+          if (secondsEl) secondsEl.style.color = '#c62828';
+        }
+      }
+      
+      // Update immediately and every second
+      updateCountdown();
+      countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    // Submit proof of payment - uploads to Cloudinary and saves URL to Firebase
+    async function submitProofOfPayment() {
+      const fileInput = document.getElementById('proofOfPaymentInput');
+      const submitBtn = document.getElementById('submitProofBtn');
+      
+      if (!fileInput || !fileInput.files || !fileInput.files[0]) {
+        if (typeof customAlert !== 'undefined') {
+          customAlert.alert('No Image', 'Please select an image file first.');
+        } else {
+          alert('Please select an image file first.');
+        }
+        return;
+      }
+      
+      if (!currentBooking || !currentBooking.id) {
+        if (typeof customAlert !== 'undefined') {
+          customAlert.alert('Error', 'Booking information not found. Please try again.');
+        } else {
+          alert('Booking information not found. Please try again.');
+        }
+        return;
+      }
+      
+      // Disable button
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Uploading to cloud...';
+      }
+      
+      try {
+        const file = fileInput.files[0];
+        
+        // Check file size (max 10MB for Cloudinary)
+        if (file.size > 10 * 1024 * 1024) {
+          if (typeof customAlert !== 'undefined') {
+            customAlert.alert('File Too Large', 'Please select an image smaller than 10MB.');
+          } else {
+            alert('Please select an image smaller than 10MB.');
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = '✅ Submit Payment Proof';
+          }
+          return;
+        }
+        
+        // Upload to Cloudinary
+        let imageUrl = null;
+        if (typeof uploadImageToCloudinary === 'function') {
+          imageUrl = await uploadImageToCloudinary(file, 'payment-proofs');
+          console.log('[PaymentProof] Uploading:', imageUrl);
+        } else {
+          // Fallback to base64 if Cloudinary not available
+          console.warn('[PaymentProof] Upload Failed, using base64');
+          imageUrl = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.readAsDataURL(file);
+          });
+        }
+        
+        // Get all bookings from Firebase
+        let bookings = [];
+        if (typeof window.firebaseGetBookings === 'function') {
+          bookings = await window.firebaseGetBookings();
+        } else if (typeof getBookings === 'function') {
+          bookings = await getBookings();
+        }
+        
+        // Find and update the booking
+        const bookingIndex = bookings.findIndex(b => b.id === currentBooking.id);
+        if (bookingIndex === -1) {
+          throw new Error('Booking not found in database');
+        }
+        
+        // Update booking with proof of payment URL
+        bookings[bookingIndex].proofOfPaymentImage = imageUrl;
+        bookings[bookingIndex].proofOfPaymentUploadedAt = Date.now();
+        bookings[bookingIndex].paymentChoice = 'payNow';
+        
+        // Save to Firebase
+        if (typeof window.firebaseSaveBookings === 'function') {
+          await window.firebaseSaveBookings(bookings);
+        } else if (typeof saveBookings === 'function') {
+          await saveBookings(bookings);
+        }
+        
+        // Update currentBooking and sessionStorage
+        currentBooking.proofOfPaymentImage = imageUrl;
+        currentBooking.proofOfPaymentUploadedAt = Date.now();
+        currentBooking.paymentChoice = 'payNow';
+        sessionStorage.setItem('lastBooking', JSON.stringify(currentBooking));
+        
+        // Show success message with image preview
+        const uploadSection = document.getElementById('uploadProofSection');
+        if (uploadSection) {
+          uploadSection.innerHTML = `
+            <div style="text-align: center; padding: 1rem;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+              <p style="font-weight: 600; color: #2e7d32; margin-bottom: 0.5rem;">Payment Proof Uploaded!</p>
+              <img src="${imageUrl}" alt="Payment Proof" style="max-width: 150px; max-height: 100px; border-radius: 8px; border: 2px solid #4CAF50; margin: 0.5rem 0;">
+              <p style="color: #4CAF50; font-size: 0.8rem; margin-bottom: 0.5rem;">✓ Payment proof uploaded</p>
+              <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                Your booking will be confirmed once admin verifies the payment.
+              </p>
+              <p style="color: #2e7d32; font-weight: 600; margin-bottom: 1rem;">
+                Redirecting to dashboard in <span id="payNowRedirectCountdown">5</span> seconds...
+              </p>
+              <a href="customer-dashboard.html" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.9rem; text-decoration: none; display: inline-block;">
+                🏠 Go to Dashboard Now
+              </a>
+            </div>
+          `;
+        }
+        
+        // Auto-redirect after 5 seconds
+        let countdown = 5;
+        const countdownEl = document.getElementById('payNowRedirectCountdown');
+        const countdownInterval = setInterval(() => {
+          countdown--;
+          if (countdownEl) {
+            countdownEl.textContent = countdown;
+          }
+          if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            window.location.href = 'customer-dashboard.html';
+          }
+        }, 1000);
+        
+        // Show success alert
+        if (typeof customAlert !== 'undefined') {
+          customAlert.success('Success', 'Payment proof uploaded! Redirecting to dashboard...');
+        }
+        
+      } catch (error) {
+        console.error('Error uploading proof of payment:', error);
+        if (typeof customAlert !== 'undefined') {
+          customAlert.alert('Upload Failed', 'Failed to upload payment proof. Please try again or contact support.');
+        } else {
+          alert('Failed to upload payment proof. Please try again or contact support.');
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '✅ Submit Payment Proof';
+        }
+      }
+    }
+
+    // Load booking details from sessionStorage
+    document.addEventListener('DOMContentLoaded', function () {
+      // Use helpers from main.js (they're global)
+      if (typeof formatDate === 'undefined' || typeof formatTime === 'undefined' || typeof formatCurrency === 'undefined') {
+        console.error('format helpers not available');
+        return;
+      }
+
+      // Check if booking came from admin walk-in
+      const bookingSource = sessionStorage.getItem('bookingSource');
+      const isAdminWalkIn = bookingSource === 'admin';
+      
+      // Update buttons based on source
+      const backBtn = document.getElementById('backToDashboardBtn');
+      const bookAnotherBtn = document.getElementById('bookAnotherBtn');
+      
+      if (isAdminWalkIn) {
+        if (backBtn) {
+          backBtn.href = 'admin-dashboard.html';
+          backBtn.textContent = 'Back to Admin Dashboard';
+        }
+        if (bookAnotherBtn) {
+          bookAnotherBtn.href = 'booking.html?source=admin';
+        }
+        // Clear the source after use
+        sessionStorage.removeItem('bookingSource');
+      }
+
+      const bookingStr = sessionStorage.getItem('lastBooking');
+      
+      console.log('[booking-success] 🔍 Checking for lastBooking in sessionStorage...');
+      console.log('[booking-success] bookingStr exists:', !!bookingStr);
+      console.log('[booking-success] sessionStorage keys:', Object.keys(sessionStorage));
+      
+      if (!bookingStr) {
+        // Redirect if no booking found
+        console.error('[booking-success] 🚨 NO BOOKING FOUND - Redirecting to dashboard');
+        console.log('[booking-success] All sessionStorage contents:', {
+          lastBooking: sessionStorage.getItem('lastBooking'),
+          bookingData: sessionStorage.getItem('bookingData'),
+          autoLoadProfile: sessionStorage.getItem('autoLoadProfile'),
+          editingBookingId: sessionStorage.getItem('editingBookingId')
+        });
+        window.location.href = isAdminWalkIn ? 'admin-dashboard.html' : 'customer-dashboard.html';
+        return;
+      }
+      
+      console.log('[booking-success] ✅ Booking found in sessionStorage, proceeding...');
+
+      try {
+        const booking = JSON.parse(bookingStr);
+        
+        console.log('[BookingSuccess] Full booking object:', booking);
+        console.log('[BookingSuccess] paymentChoice value:', booking.paymentChoice);
+        console.log('[BookingSuccess] paymentChoice type:', typeof booking.paymentChoice);
+        
+        // ============================================
+        // 🔄 AUTO-CLEAR OLD BOOKING DATA
+        // Only show bookings created within last 15 minutes
+        // This prevents showing stale/old booking data
+        // ============================================
+        const bookingAge = Date.now() - (booking.createdAt || 0);
+        const maxAge = 15 * 60 * 1000; // 15 minutes
+        
+        if (bookingAge > maxAge) {
+          console.warn('[BookingSuccess] Booking data is too old (' + Math.round(bookingAge / 60000) + ' minutes), clearing...');
+          sessionStorage.removeItem('lastBooking');
+          window.location.href = isAdminWalkIn ? 'admin-dashboard.html' : 'customer-dashboard.html';
+          return;
+        }
+        
+        console.log('[BookingSuccess] Showing booking:', booking.id, booking.petName, 'created', Math.round(bookingAge / 1000), 'seconds ago');
+        
+        currentBooking = booking; // Set global variable for payment functions
+        const profile = booking.profile || {};
+        const container = document.getElementById('bookingDetails');
+
+        if (!container) {
+          console.error('Booking details container not found');
+          return;
+        }
+
+        let cost = booking.cost || null;
+
+
+        // Recalculate cost if missing or invalid (for old bookings or single-service bookings with packagePrice: 0)
+        if (!cost || (booking.packageId === 'single-service' && (!cost.packagePrice || cost.packagePrice === 0))) {
+          if (typeof computeBookingCost === 'function') {
+            cost = computeBookingCost(booking.packageId, booking.petWeight, booking.addOns, booking.singleServices);
+          }
+        }
+
+        // Ensure arrays exist to prevent crashes (fixes TypeError: Cannot read properties of undefined (reading 'length'))
+        if (cost) {
+          cost.addOns = cost.addOns || [];
+          cost.services = cost.services || [];
+        }
+
+        const weightLabel = booking.petWeight || profile.weight || '';
+        
+        // Fix add-ons display - handle both object format and string format
+        let addOnDisplay = 'None';
+        if (cost?.addOns?.length) {
+          addOnDisplay = cost.addOns.map(addon => `${escapeHtml(addon.label || addon.name || addon)} (${formatCurrency(addon.price || 0)})`).join(', ');
+        } else if (booking.addOns && booking.addOns.length) {
+          addOnDisplay = booking.addOns.map(addon => {
+            if (typeof addon === 'string') return escapeHtml(addon);
+            return `${escapeHtml(addon.label || addon.name || 'Add-on')} (${formatCurrency(addon.price || 0)})`;
+          }).join(', ');
+        }
+
+        const bookingCode = typeof getBookingDisplayCode === 'function'
+          ? getBookingDisplayCode(booking)
+          : (booking.shortId || booking.id);
+
+        container.innerHTML = `
+          <div class="summary-item">
+            <span class="summary-label">Pet Name:</span>
+            <span class="summary-value">${escapeHtml(booking.petName || 'N/A')}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Booking Code:</span>
+            <span class="summary-value">${escapeHtml(bookingCode || 'N/A')}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Owner:</span>
+            <span class="summary-value">${escapeHtml(profile.ownerName || booking.customerName || 'N/A')}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Pet Type:</span>
+            <span class="summary-value">${escapeHtml(booking.petType ? booking.petType.charAt(0).toUpperCase() + booking.petType.slice(1) : 'N/A')}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Package:</span>
+            <span class="summary-value">${escapeHtml(booking.packageName || 'N/A')}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Weight:</span>
+            <span class="summary-value">${weightLabel ? escapeHtml(weightLabel) : 'Not specified'}</span>
+          </div>
+          ${booking.packageId === 'single-service' ? `
+            <div class="summary-item">
+              <span class="summary-label">Services:</span>
+              <span class="summary-value">
+                ${booking.singleServices && booking.singleServices.length
+              ? booking.singleServices.map(id => {
+                const serviceLabel = window.SINGLE_SERVICE_PRICING?.[id]?.label || id;
+                // Try to get price from cost object
+                if (cost && cost.services && cost.services.length) {
+                  const serviceCost = cost.services.find(s => s.serviceId === id);
+                  if (serviceCost && serviceCost.price) {
+                    return `${serviceLabel} (${formatCurrency(serviceCost.price)})`;
+                  }
+                }
+                // Fallback: try to calculate price if weight is available
+                if (booking.petWeight && typeof getSingleServicePrice === 'function') {
+                  const priceInfo = getSingleServicePrice(id, booking.petWeight);
+                  if (priceInfo && priceInfo.price) {
+                    return `${serviceLabel} (${formatCurrency(priceInfo.price)})`;
+                  }
+                }
+                return serviceLabel;
+              }).join(', ')
+              : 'No services selected'}
+              </span>
+            </div>
+          ` : ''}
+          <div class="summary-item">
+            <span class="summary-label">Groomer:</span>
+            <span class="summary-value">${escapeHtml(booking.groomerName || 'Auto-assign')}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Date:</span>
+            <span class="summary-value">${booking.date ? formatDate(booking.date) : 'N/A'}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Time:</span>
+            <span class="summary-value">${booking.time ? formatTime(booking.time) : 'N/A'}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Customer:</span>
+            <span class="summary-value">${escapeHtml(booking.customerName || 'N/A')}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Phone:</span>
+            <span class="summary-value">${escapeHtml(booking.phone || 'N/A')}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Add-ons:</span>
+            <span class="summary-value">${addOnDisplay}</span>
+          </div>
+          ${booking.referenceCutId || booking.referenceCut ? `
+            <div class="summary-item" style="flex-direction: column; align-items: flex-start;">
+              <span class="summary-label" style="margin-bottom: 0.5rem;">✂️ Reference Cut:</span>
+              <div style="background: #e8f5e9; padding: 0.75rem 1rem; border-radius: 8px; border: 2px solid #4CAF50; color: #2e7d32; font-weight: 600;">
+                ${escapeHtml((booking.referenceCutId || booking.referenceCut).replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()))}
+              </div>
+            </div>
+          ` : ''}
+          ${booking.bookingNotes && booking.bookingNotes.trim() ? `
+            <div class="summary-item" style="flex-direction: column; align-items: flex-start;">
+              <span class="summary-label" style="margin-bottom: 0.5rem;">📝 Special Notes:</span>
+              <div style="background: #fff3e0; padding: 0.75rem 1rem; border-radius: 8px; color: #e65100; font-weight: 500; border: 2px solid #ff9800; width: 100%; box-sizing: border-box;">${escapeHtml(booking.bookingNotes)}</div>
+            </div>
+          ` : ''}
+
+          <div class="summary-item">
+            <span class="summary-label">Status:</span>
+            <span class="summary-value">
+              <span class="badge badge-pending">${escapeHtml(booking.status || 'pending')}</span>
+            </span>
+          </div>
+        `;
+
+        if (cost) {
+          const isSingleService = booking.packageId === 'single-service';
+          const servicesTotal = cost.services?.reduce((sum, s) => sum + (s.price || 0), 0) || 0;
+          
+          container.innerHTML += `
+            <div class="summary-divider" style="margin: 1.25rem 0; border-top: 1px solid var(--gray-200);"></div>
+            ${isSingleService && cost.services && cost.services.length ? `
+              <div class="summary-item">
+                <span class="summary-label">Single Services:</span>
+                <span class="summary-value">
+                  ${cost.services.map(service => `${escapeHtml(service.label)} (${service.price ? formatCurrency(service.price) : 'Select weight for pricing'})`).join('<br>')}
+                </span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Services Total:</span>
+                <span class="summary-value">${formatCurrency(servicesTotal)}</span>
+              </div>
+            ` : `
+              <div class="summary-item">
+                <span class="summary-label">Package (${escapeHtml(cost.weightLabel)}):</span>
+                <span class="summary-value">${formatCurrency(cost.packagePrice)}</span>
+              </div>
+            `}
+            <div class="summary-item">
+              <span class="summary-label">Add-ons:</span>
+              <span class="summary-value">${cost.addOns.length ? cost.addOns.map(addon => `${escapeHtml(addon.label)} (${formatCurrency(addon.price)})`).join(', ') : 'None'}</span>
+            </div>
+            <div class="summary-item" style="margin-top: 1rem; padding-top: 1rem; border-top: 2px solid var(--gray-300); font-weight: 600; color: var(--primary, #000);">
+              <span class="summary-label">Total Amount:</span>
+              <span class="summary-value">${formatCurrency(cost.totalAmount || (cost.subtotal + (cost.bookingFee || cost.totalDueToday || 100)))}</span>
+            </div>
+            ${cost.bookingFee ? `
+            <div class="summary-item" style="margin-top: 0.5rem; padding: 0.5rem; background: #fff3e0; border-left: 3px solid #ff9800; color: #e65100;">
+              <span class="summary-label">Booking Fee Discount:</span>
+              <span class="summary-value">-${formatCurrency(cost.bookingFee)}</span>
+            </div>
+            ` : ''}
+            <div class="summary-item" style="margin-top: 0.5rem; padding-top: 0.5rem; font-weight: 700; color: var(--success-600); font-size: 1.1rem;">
+              <span class="summary-label">Amount to Pay:</span>
+              <span class="summary-value">${formatCurrency((cost.totalAmount || cost.subtotal) - (cost.bookingFee || 0))}</span>
+            </div>
+          `;
+        }
+        
+        // Check if booking already has a payment choice and show appropriate section
+        // Only hide buttons if this specific booking has payment data
+        console.log('[BookingSuccess] Payment choice:', booking.paymentChoice, 'Type:', typeof booking.paymentChoice);
+        
+        if (booking.paymentChoice === 'payNow' && booking.proofOfPaymentImage && booking.proofOfPaymentUploadedAt) {
+          // User already uploaded proof - show success message
+          console.log('[BookingSuccess] Showing payment proof uploaded message');
+          const paymentButtons = document.getElementById('paymentButtons');
+          const uploadSection = document.getElementById('uploadProofSection');
+          if (paymentButtons) paymentButtons.style.display = 'none';
+          if (uploadSection) {
+            uploadSection.style.display = 'block';
+            uploadSection.innerHTML = `
+              <div style="text-align: center; padding: 1rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                <p style="font-weight: 600; color: #2e7d32; margin-bottom: 0.5rem;">Payment Proof Uploaded!</p>
+                <p style="color: var(--gray-600); font-size: 0.9rem;">
+                  Your booking will be confirmed once we verify the payment.
+                </p>
+              </div>
+            `;
+          }
+        } else if (booking.paymentChoice === 'payLater') {
+          // User previously selected Pay Later - show payment still required
+          console.log('[BookingSuccess] Showing payment pending message (payLater selected)');
+          const paymentButtons = document.getElementById('paymentButtons');
+          if (paymentButtons) paymentButtons.style.display = 'none';
+          
+          // Show message that payment is still needed
+          const paymentCard = document.getElementById('paymentOptionsCard');
+          if (paymentCard) {
+            const cardBody = paymentCard.querySelector('.card-body');
+            if (cardBody) {
+              cardBody.innerHTML = `
+                <div style="text-align: center; padding: 1.5rem;">
+                  <div style="font-size: 3rem; margin-bottom: 1rem;">⏳</div>
+                  <p style="font-weight: 600; color: #e65100; margin-bottom: 0.5rem;">Payment Pending</p>
+                  <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Please pay the ₱100 booking fee via GCash to confirm your booking slot.
+                  </p>
+                  <a href="customer-dashboard.html" class="btn btn-primary" style="text-decoration: none;">
+                    🏠 Go to Dashboard
+                  </a>
+                </div>
+              `;
+            }
+          }
+        } else {
+          // New booking - show payment options
+          console.log('[BookingSuccess] Showing payment options (new booking)');
+        }
+        
+        // Load payment settings (QR code, GCash number)
+        loadPaymentSettings();
+        
+        // ============================================
+        // 💳 CHECK IF PAY LATER SHOULD BE AVAILABLE
+        // Pay Later only available for advance bookings (2+ hours)
+        // ============================================
+        const payLaterAvailable = isPayLaterAvailable(booking);
+        const paymentButtons = document.getElementById('paymentButtons');
+        
+        if (paymentButtons && !payLaterAvailable) {
+          // Hide Pay Later button
+          const payLaterBtn = paymentButtons.querySelector('button[onclick="handlePayLater()"]');
+          if (payLaterBtn) {
+            payLaterBtn.style.display = 'none';
+          }
+          
+          // Update Pay Now button to be full width
+          const payNowBtn = paymentButtons.querySelector('button[onclick="handlePayNow()"]');
+          if (payNowBtn) {
+            payNowBtn.style.flex = '1';
+            payNowBtn.style.minWidth = '100%';
+            payNowBtn.innerHTML = '💰 Pay Now - Upload Proof (Required)';
+          }
+          
+          // Add notice about same-day booking
+          const noticeDiv = document.createElement('div');
+          noticeDiv.style.cssText = 'margin-top: 1rem; padding: 1rem; background: #fff3e0; border-radius: 8px; border-left: 4px solid #ff9800;';
+          noticeDiv.innerHTML = `
+            <p style="font-weight: 600; color: #e65100; margin-bottom: 0.5rem;">⚠️ Same-Day Booking</p>
+            <p style="font-size: 0.85rem; color: var(--gray-700); margin: 0;">
+              Pay Later is not available for bookings within 2 hours of appointment time. Please pay now to secure your slot.
+            </p>
+          `;
+          paymentButtons.parentNode.insertBefore(noticeDiv, paymentButtons.nextSibling);
+        }
+        
+      } catch (error) {
+        console.error('Error loading booking details:', error);
+        const container = document.getElementById('bookingDetails');
+        if (container) {
+          container.innerHTML = '<p style="color: var(--gray-600);">Error loading booking details. Please check your dashboard.</p>';
+        }
+      }
+    });
+    
+    // Load payment settings from Firebase or localStorage
+    async function loadPaymentSettings() {
+      try {
+        let settings = null;
+        
+        // Try to get settings from Firebase first
+        if (typeof window.firebaseGetPaymentSettings === 'function') {
+          settings = await window.firebaseGetPaymentSettings();
+        }
+        
+        // Fallback to localStorage if Firebase didn't return settings
+        if (!settings) {
+          const localSettings = localStorage.getItem('paymentSettings');
+          if (localSettings) {
+            settings = JSON.parse(localSettings);
+            console.log('[loadPaymentSettings] Using localStorage fallback');
+          }
+        }
+        
+        if (settings) {
+          console.log('[loadPaymentSettings] Settings loaded:', settings);
+          
+          // Update GCash number if set
+          if (settings.gcashNumber) {
+            const gcashDisplay = document.getElementById('gcashNumberDisplay');
+            if (gcashDisplay) gcashDisplay.textContent = settings.gcashNumber;
+          }
+          
+          // Update account name if set
+          if (settings.accountName) {
+            const accountNameEl = document.getElementById('gcashAccountName');
+            if (accountNameEl) accountNameEl.textContent = 'Account Name: ' + settings.accountName;
+          }
+          
+          // Show QR code if set
+          if (settings.qrCodeImage) {
+            const qrSection = document.getElementById('paymentQRSection');
+            const qrImage = document.getElementById('paymentQRImage');
+            if (qrSection && qrImage) {
+              qrImage.src = settings.qrCodeImage;
+              qrSection.style.display = 'block';
+              console.log('[loadPaymentSettings] QR code displayed');
+            }
+          }
+        } else {
+          console.log('[loadPaymentSettings] No settings found');
+        }
+      } catch (error) {
+        console.warn('Could not load payment settings:', error);
+        
+        // Try localStorage as last resort
+        try {
+          const localSettings = localStorage.getItem('paymentSettings');
+          if (localSettings) {
+            const settings = JSON.parse(localSettings);
+            if (settings.qrCodeImage) {
+              const qrSection = document.getElementById('paymentQRSection');
+              const qrImage = document.getElementById('paymentQRImage');
+              if (qrSection && qrImage) {
+                qrImage.src = settings.qrCodeImage;
+                qrSection.style.display = 'block';
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('localStorage fallback failed:', e);
+        }
+      }
+    }
+    
+    // Open QR code in lightbox
+    function openQRLightbox() {
+      const qrImage = document.getElementById('paymentQRImage');
+      if (!qrImage || !qrImage.src) return;
+      
+      // Create lightbox
+      const lightbox = document.createElement('div');
+      lightbox.id = 'qrLightbox';
+      lightbox.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer;';
+      lightbox.onclick = () => lightbox.remove();
+      
+      const img = document.createElement('img');
+      img.src = qrImage.src;
+      img.style.cssText = 'max-width: 90%; max-height: 90%; border-radius: 12px;';
+      
+      const closeBtn = document.createElement('button');
+      closeBtn.innerHTML = '×';
+      closeBtn.style.cssText = 'position: absolute; top: 20px; right: 20px; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;';
+      closeBtn.onclick = () => lightbox.remove();
+      
+      lightbox.appendChild(img);
+      lightbox.appendChild(closeBtn);
+      document.body.appendChild(lightbox);
+    }
+  </script>
+</body>
+
+</html>

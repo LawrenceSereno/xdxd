@@ -1,0 +1,1455 @@
+/* ============================================
+   BestBuddies Pet Grooming - Groomer Dashboard Styles
+   ============================================ */
+
+/* ============================================
+   GROOMER LAYOUT - SIDEBAR DESIGN
+   ============================================ */
+
+.groomer-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.groomer-content-section {
+  display: none;
+  animation: fadeInContent 0.3s ease-out;
+}
+
+.groomer-content-section.active {
+  display: block;
+}
+
+/* Desktop: Show sections based on sidebar navigation */
+@media (min-width: 993px) {
+  .groomer-content-section {
+    display: none;
+  }
+  
+  .groomer-content-section.active {
+    display: block;
+  }
+  
+  /* Hide overview section on desktop (it's mobile-only) */
+  #groomerOverviewSection {
+    display: none !important;
+  }
+}
+
+.sidebar {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+  border: 1px solid #e5e7eb;
+  transition: box-shadow 0.2s ease;
+}
+
+.sidebar:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.sidebar-menu li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  color: #6b7280;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.sidebar-menu a:hover {
+  background: #f3f4f6;
+  color: #374151;
+  border-color: #e5e7eb;
+  transform: translateX(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-menu a:active {
+  background: #e5e7eb;
+  color: #1f2937;
+  transform: translateX(1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-menu a.active {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4338ca;
+  box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+}
+
+.sidebar-menu a.active:hover {
+  background: #4338ca;
+  color: #ffffff;
+  border-color: #3730a3;
+  transform: translateX(2px);
+  box-shadow: 0 6px 8px rgba(79, 70, 229, 0.3);
+}
+
+/* Quick Info Panel Styling */
+.sidebar .card {
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+.sidebar .card:hover {
+  border-color: #d1d5db;
+  background: #f3f4f6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile responsive for groomer layout */
+@media (max-width: 968px) {
+  .groomer-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  /* HIDE SIDEBAR COMPLETELY ON MOBILE */
+  .groomer-layout .sidebar {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   EXISTING STYLES
+   ============================================ */
+
+/* Groomer Stats Grid */
+#groomerStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Profile Form */
+#groomerProfileForm {
+  margin-top: 1rem;
+}
+
+#groomerProfileForm .form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Absence History */
+.absence-card {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1rem;
+  border: 1px solid #e5e7eb;
+}
+
+.absence-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: #d1d5db;
+}
+
+.absence-card:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Calendar */
+#groomerCalendar {
+  min-height: 400px;
+}
+
+/* Bookings Container */
+#groomerBookingsContainer .card {
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+  border: 1px solid #e5e7eb;
+}
+
+#groomerBookingsContainer .card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+  border-color: #d1d5db;
+}
+
+#groomerBookingsContainer .card:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  #groomerStats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Specific fix for groomerTimeOffCard area */
+  #groomerAbsenceSection .grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  #groomerTimeOffCard {
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+    overflow: visible !important;
+  }
+
+  #groomerCalendarCard {
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* Both cards should have same responsive behavior */
+  #groomerTimeOffCard .card-body,
+  #groomerCalendarCard .card-body {
+    overflow: visible !important;
+    padding: 1rem !important;
+  }
+
+  /* Fix absence form responsiveness */
+  #groomerTimeOffCard .form-group {
+    margin-bottom: 1rem !important;
+  }
+
+  #groomerTimeOffCard .form-input,
+  #groomerTimeOffCard .form-textarea,
+  #groomerTimeOffCard input[type="file"],
+  #groomerTimeOffCard textarea,
+  #groomerTimeOffCard button {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #groomerTimeOffCard textarea {
+    resize: vertical !important;
+    min-height: 100px !important;
+  }
+
+  #groomerTimeOffCard .btn {
+    width: 100% !important;
+    padding: 0.875rem 1rem !important;
+    font-size: 16px !important;
+  }
+
+  /* Ensure card body has proper padding */
+  #groomerTimeOffCard .card-body {
+    padding: 1rem !important;
+  }
+}
+
+/* ============================================
+   Mobile Phone Portrait (max 480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+  #groomerStats {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  #groomerStats .card {
+    padding: 1rem !important;
+  }
+
+  #groomerStats .card-body p {
+    font-size: 0.9rem !important;
+  }
+
+  #groomerStats .card-body .stat-number {
+    font-size: 1.5rem !important;
+  }
+
+  /* Profile Form */
+  #groomerProfileForm {
+    padding: 1rem !important;
+  }
+
+  #groomerProfileForm .form-group {
+    margin-bottom: 1rem !important;
+  }
+
+  #groomerProfileForm .form-input,
+  #groomerProfileForm .form-select {
+    font-size: 16px !important;
+    padding: 0.75rem !important;
+  }
+
+  /* Form sections */
+  .form-section-title {
+    font-size: 1rem !important;
+    margin: 1rem 0 0.75rem 0 !important;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Specific fix for groomerTimeOffCard area on mobile */
+  #groomerAbsenceSection .grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  #groomerTimeOffCard,
+  #groomerCalendarCard {
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Fix absence form responsiveness on mobile */
+  #groomerTimeOffCard .form-group {
+    margin-bottom: 1rem !important;
+  }
+
+  #groomerTimeOffCard .form-input,
+  #groomerTimeOffCard .form-textarea,
+  #groomerTimeOffCard input[type="file"],
+  #groomerTimeOffCard textarea,
+  #groomerTimeOffCard button {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important;
+  }
+
+  #groomerTimeOffCard textarea {
+    resize: vertical !important;
+    min-height: 80px !important;
+  }
+
+  #groomerTimeOffCard .btn {
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 16px !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Calendar */
+  #groomerCalendar {
+    min-height: 300px;
+    font-size: 0.85rem !important;
+  }
+
+  /* Bookings */
+  #groomerBookingsContainer .card {
+    padding: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  #groomerBookingsContainer .card-header {
+    padding: 0.75rem 0 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  #groomerBookingsContainer .card-title {
+    font-size: 1.1rem !important;
+  }
+
+  #groomerBookingsContainer .card-body {
+    font-size: 0.9rem !important;
+  }
+
+  /* Absence cards */
+  .absence-card {
+    padding: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .absence-card h4 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .absence-card p {
+    font-size: 0.85rem !important;
+  }
+
+  /* Buttons */
+  .btn {
+    font-size: 0.9rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    padding: 1rem !important;
+  }
+
+  .sidebar h2 {
+    font-size: 1.1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .sidebar-menu a {
+    font-size: 0.9rem !important;
+    padding: 0.75rem !important;
+  }
+
+  /* Card containers */
+  .card {
+    padding: 1rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 0 !important;
+  }
+
+  .card-footer {
+    padding: 0.75rem 0 !important;
+  }
+}
+
+
+
+/* ============================================
+   NOTIFICATION BELL STYLES
+   ============================================ */
+@keyframes bellShake {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(15deg); }
+  40% { transform: rotate(-15deg); }
+  60% { transform: rotate(10deg); }
+  80% { transform: rotate(-10deg); }
+}
+
+#groomerNotificationBell {
+  transition: transform 0.2s ease;
+}
+
+#groomerNotificationBell:hover {
+  transform: scale(1.1);
+}
+
+#groomerNotificationBell:hover i {
+  color: var(--primary) !important;
+}
+
+#groomerNotificationBadge {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+#groomerNotificationPanel {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   📱 GROOMER MOBILE RESPONSIVE - COMPLETE OVERHAUL
+   Matching Customer Dashboard Style
+   ============================================ */
+
+/* ============================================
+   MOBILE BOTTOM NAVIGATION BAR
+   ============================================ */
+
+.groomer-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0.5rem 0;
+  padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Show bottom nav only on mobile/tablet */
+@media (max-width: 992px) {
+  .groomer-bottom-nav {
+    display: block;
+  }
+}
+
+/* Hide bottom nav on desktop */
+@media (min-width: 993px) {
+  .groomer-bottom-nav {
+    display: none !important;
+  }
+}
+
+.groomer-bottom-nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.groomer-bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  min-width: 60px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+}
+
+.groomer-bottom-nav-item:hover,
+.groomer-bottom-nav-item:active {
+  color: #4f46e5;
+  background: rgba(79, 70, 229, 0.1);
+  transform: translateY(-1px);
+}
+
+.groomer-bottom-nav-item.active {
+  color: #4f46e5;
+  background: rgba(79, 70, 229, 0.15);
+}
+
+.groomer-bottom-nav-item.active:hover {
+  color: #4338ca;
+  background: rgba(79, 70, 229, 0.2);
+  transform: translateY(-1px);
+}
+
+.groomer-bottom-nav-item .nav-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+  line-height: 1;
+}
+
+.groomer-bottom-nav-item .nav-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70px;
+}
+
+.groomer-bottom-nav-item .nav-badge {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  background: #dc3545;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 10px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* ============================================
+   MOBILE SECTIONS (Collapsible Cards)
+   ============================================ */
+
+/* Desktop: Show all sections */
+.groomer-mobile-section {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   MOBILE RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+@media (max-width: 992px) {
+  /* Show bottom nav */
+  .groomer-bottom-nav {
+    display: block;
+  }
+  
+  /* HIDE SIDEBAR COMPLETELY ON MOBILE - Groomer specific */
+  .groomer-layout {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  
+  .groomer-layout .sidebar {
+    display: none !important;
+  }
+  
+  /* Main content takes full width */
+  .groomer-layout .main-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Add padding for bottom nav */
+  #groomerDashboard {
+    padding-bottom: 100px !important;
+  }
+  
+  /* Hide all sections by default on mobile */
+  .groomer-content-section {
+    display: none !important;
+  }
+  
+  /* Show active section on mobile */
+  .groomer-content-section.mobile-active {
+    display: block !important;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  /* Footer padding for bottom nav */
+  footer {
+    padding-bottom: 100px !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Dashboard header adjustments */
+  .dashboard-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.3rem !important;
+  }
+  
+  .dashboard-header p {
+    font-size: 0.9rem !important;
+  }
+  
+  /* Stats grid */
+  #groomerStats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Grid layouts */
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Specific fix for groomerTimeOffCard area on tablets */
+  #groomerAbsenceSection .grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  #groomerTimeOffCard,
+  #groomerCalendarCard {
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+    overflow: visible !important;
+  }
+
+  /* Both cards should have same responsive behavior on tablets */
+  #groomerTimeOffCard .card-body,
+  #groomerCalendarCard .card-body {
+    overflow: visible !important;
+    padding: 1rem !important;
+  }
+  
+  /* Cards */
+  .card {
+    margin-bottom: 1rem !important;
+    border-radius: 12px !important;
+  }
+  
+  .card-header {
+    padding: 0.75rem 1rem !important;
+  }
+  
+  .card-body {
+    padding: 1rem !important;
+  }
+  
+  /* Notification panel */
+  #groomerNotificationPanel {
+    width: calc(100% - 40px) !important;
+    right: 20px !important;
+    left: 20px !important;
+    max-width: 400px !important;
+    top: 80px !important;
+  }
+  
+  /* ============================================
+     CALENDAR MOBILE RESPONSIVE - HORIZONTAL SCROLL
+     ============================================ */
+  
+  /* Calendar card body - allow overflow */
+  #groomerCalendarCard .card-body,
+  #groomerTimeOffCard .card-body,
+  .card-body:has(#groomerCalendar),
+  .card-body:has(#absenceCalendarPicker) {
+    overflow: visible !important;
+  }
+  
+  /* Calendar container - enable horizontal scroll */
+  #groomerCalendar,
+  #absenceCalendarPicker {
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--gray-500) var(--gray-100) !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* TimeOff card - same responsive behavior as calendar card */
+  #groomerTimeOffCard {
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  #groomerTimeOffCard .card-body {
+    overflow: visible !important;
+    padding: 1rem !important;
+  }
+
+  /* Show scrollbar */
+  #groomerCalendar::-webkit-scrollbar,
+  #absenceCalendarPicker::-webkit-scrollbar {
+    height: 8px !important;
+    display: block !important;
+  }
+
+  #groomerCalendar::-webkit-scrollbar-track,
+  #absenceCalendarPicker::-webkit-scrollbar-track {
+    background: var(--gray-100) !important;
+    border-radius: 4px !important;
+  }
+
+  #groomerCalendar::-webkit-scrollbar-thumb,
+  #absenceCalendarPicker::-webkit-scrollbar-thumb {
+    background: var(--gray-400) !important;
+    border-radius: 4px !important;
+  }
+  
+  /* Simple calendar-grid approach - no complex CSS needed, uses inline styles */
+  
+  #groomerCalendar .calendar-cell.head,
+  #absenceCalendarPicker .calendar-cell.head {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+  }
+  
+  .mega-calendar .calendar-header {
+    padding: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .mega-calendar .calendar-header h3 {
+    font-size: 1rem !important;
+    flex: 1;
+    text-align: center;
+  }
+  
+  .mega-calendar .calendar-nav {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 1.2rem !important;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-100);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .mega-calendar .calendar-nav:active {
+    background: var(--gray-200);
+  }
+  
+  .mega-calendar .calendar-cell .day-number {
+    font-size: 0.9rem !important;
+    font-weight: 600;
+  }
+  
+  .mega-calendar .calendar-cell.selected {
+    background: #4CAF50 !important;
+    color: white !important;
+    border-radius: 8px;
+  }
+  
+  .mega-calendar .calendar-cell.today {
+    border: 2px solid #4CAF50 !important;
+    border-radius: 8px;
+  }
+  
+  /* Calendar legend */
+  .mega-calendar .calendar-legend {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 0 !important;
+    justify-content: center !important;
+  }
+  
+  .mega-calendar .legend-chip {
+    font-size: 0.75rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+  
+  /* ============================================
+     BUTTONS MOBILE RESPONSIVE
+     ============================================ */
+  
+  .btn {
+    width: 100% !important;
+    padding: 0.875rem 1rem !important;
+    font-size: 1rem !important;
+    border-radius: 10px !important;
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    touch-action: manipulation;
+    transition: all 0.2s ease !important;
+    border: 1px solid transparent !important;
+  }
+  
+  .btn:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .btn:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .btn-sm {
+    width: auto !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+    min-height: 40px !important;
+  }
+  
+  .btn-primary {
+    background: #4f46e5 !important;
+    border-color: #4338ca !important;
+    color: #ffffff !important;
+  }
+  
+  .btn-primary:hover {
+    background: #4338ca !important;
+    border-color: #3730a3 !important;
+  }
+  
+  .btn-primary:active {
+    background: #3730a3 !important;
+    border-color: #312e81 !important;
+  }
+  
+  .btn-outline {
+    border: 2px solid #d1d5db !important;
+    background: #ffffff !important;
+    color: #374151 !important;
+  }
+  
+  .btn-outline:hover {
+    border-color: #4f46e5 !important;
+    background: #f3f4f6 !important;
+    color: #4f46e5 !important;
+  }
+  
+  .btn-outline:active {
+    border-color: #4338ca !important;
+    background: #e5e7eb !important;
+    color: #4338ca !important;
+  }
+  
+  .btn-danger {
+    background: #dc2626 !important;
+    border-color: #b91c1c !important;
+    color: #ffffff !important;
+  }
+  
+  .btn-danger:hover {
+    background: #b91c1c !important;
+    border-color: #991b1b !important;
+  }
+  
+  .btn-danger:active {
+    background: #991b1b !important;
+    border-color: #7f1d1d !important;
+  }
+  
+  /* Button groups */
+  .card-body .btn + .btn {
+    margin-top: 0.5rem;
+  }
+  
+  /* ============================================
+     FORMS MOBILE RESPONSIVE
+     ============================================ */
+  
+  .form-group {
+    margin-bottom: 1rem !important;
+  }
+  
+  .form-label {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    display: block;
+  }
+  
+  .form-input,
+  .form-select,
+  .form-textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="file"],
+  textarea,
+  select {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.875rem 1rem !important;
+    font-size: 16px !important; /* Prevents iOS zoom */
+    border-radius: 10px !important;
+    border: 2px solid var(--gray-200) !important;
+    min-height: 48px !important;
+    box-sizing: border-box !important;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #4CAF50 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2) !important;
+  }
+  
+  .form-textarea,
+  textarea {
+    min-height: 100px !important;
+    resize: vertical;
+  }
+  
+  .form-hint,
+  small.text-muted {
+    font-size: 0.8rem !important;
+    color: var(--gray-500) !important;
+    margin-top: 0.25rem;
+    display: block;
+  }
+  
+  /* File input styling */
+  input[type="file"] {
+    padding: 0.75rem !important;
+    background: var(--gray-50) !important;
+  }
+  
+  /* ============================================
+     BOOKING CARDS MOBILE
+     ============================================ */
+  
+  #groomerBookingsContainer .card {
+    padding: 1rem !important;
+  }
+  
+  #groomerBookingsContainer .card-body > div {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  #groomerBookingsContainer .card-body > div > div:first-child {
+    font-size: 2rem !important;
+    text-align: center;
+  }
+  
+  #groomerBookingsContainer h4 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  #groomerBookingsContainer p {
+    font-size: 0.875rem !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.4;
+  }
+  
+  #groomerBookingsContainer .badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+  
+  /* ============================================
+     ABSENCE CARDS MOBILE
+     ============================================ */
+  
+  .absence-card {
+    padding: 1rem !important;
+  }
+  
+  .absence-card .card-body > div {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  
+  .absence-card h3.card-title {
+    font-size: 1rem !important;
+  }
+  
+  .absence-card p {
+    font-size: 0.875rem !important;
+  }
+  
+  .absence-card .badge {
+    align-self: flex-start;
+  }
+  
+  .absence-card .btn {
+    width: auto !important;
+    flex: 1;
+  }
+  
+  /* ============================================
+     SECTION TITLES MOBILE
+     ============================================ */
+  
+  .section-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gray-100);
+  }
+  
+  .card-title {
+    font-size: 1rem !important;
+  }
+  
+  /* ============================================
+     BADGES MOBILE
+     ============================================ */
+  
+  .badge {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 20px !important;
+    font-weight: 600;
+  }
+  
+  #nextDayOffBadge {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Stats grid - 2 columns */
+  #groomerStats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+  
+  #groomerStats .stat-card {
+    padding: 0.75rem !important;
+  }
+  
+  #groomerStats .stat-value,
+  #groomerStats .stat-number {
+    font-size: 1.5rem !important;
+  }
+  
+  #groomerStats .stat-label {
+    font-size: 0.7rem !important;
+  }
+  
+  /* Dashboard header */
+  .dashboard-header {
+    padding: 0.75rem !important;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.1rem !important;
+  }
+  
+  .dashboard-header p {
+    font-size: 0.8rem !important;
+    display: none; /* Hide subtitle on very small screens */
+  }
+  
+  /* Simple calendar - no complex responsive CSS needed */
+  
+  /* Forms smaller padding */
+  .form-input,
+  .form-select,
+  .form-textarea,
+  input,
+  textarea,
+  select {
+    padding: 0.75rem !important;
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: 0.75rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* Cards */
+  .card {
+    border-radius: 10px !important;
+  }
+  
+  .card-body {
+    padding: 0.75rem !important;
+  }
+  
+  /* Section titles */
+  .section-title {
+    font-size: 1rem !important;
+  }
+  
+  /* Booking cards */
+  #groomerBookingsContainer .card {
+    padding: 0.75rem !important;
+  }
+  
+  #groomerBookingsContainer .card-body > div {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  
+  #groomerBookingsContainer h4 {
+    font-size: 1rem !important;
+  }
+  
+  #groomerBookingsContainer p {
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 400px) {
+  /* Stats grid - 1 column on very small screens */
+  #groomerStats {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .groomer-bottom-nav-item {
+    padding: 0.4rem 0.5rem;
+    min-width: 50px;
+  }
+  
+  .groomer-bottom-nav-item .nav-icon {
+    font-size: 1.2rem;
+  }
+  
+  .groomer-bottom-nav-item .nav-label {
+    font-size: 0.65rem;
+    max-width: 55px;
+  }
+  
+  /* Simple calendar - no complex responsive CSS needed */
+}
+
+/* ============================================
+   SORT CONTROLS MOBILE
+   ============================================ */
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  background: var(--gray-50);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+}
+
+.sort-controls label {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.sort-controls select {
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-200);
+  font-size: 0.85rem;
+  background: white;
+}
+
+@media (max-width: 576px) {
+  .sort-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .sort-controls select {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   TOUCH-FRIENDLY ELEMENTS
+   ============================================ */
+
+@media (max-width: 992px) {
+  .btn,
+  .form-input,
+  .form-select,
+  .groomer-bottom-nav-item {
+    min-height: 44px;
+  }
+  
+  /* Larger tap targets for cards */
+  .absence-card,
+  #groomerBookingsContainer .card {
+    cursor: pointer;
+  }
+}
+
+
+/* ============================================
+   MORE MENU POPUP
+   ============================================ */
+
+.groomer-more-menu {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  padding: 0.5rem;
+  min-width: 200px;
+  animation: slideUp 0.2s ease-out;
+}
+
+.groomer-more-menu.show {
+  display: block;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.groomer-more-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.groomer-more-menu-item:hover,
+.groomer-more-menu-item:active {
+  background: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+  transform: translateX(2px);
+}
+
+.groomer-more-menu-item .menu-icon {
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   SORT TOGGLE STYLES
+   ============================================ */
+
+.groomer-sort-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--gray-50);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.groomer-sort-controls label {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.groomer-sort-controls select {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-200);
+  font-size: 0.85rem;
+  background: white;
+  cursor: pointer;
+  min-width: 140px;
+}
+
+.groomer-sort-controls select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+@media (max-width: 576px) {
+  .groomer-sort-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .groomer-sort-controls select {
+    width: 100%;
+  }
+}
+
+
+/* ============================================
+   SKELETON LOADING STYLES
+   ============================================ */
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem !important;
+  gap: 0.5rem;
+}
+
+.skeleton-stat .skeleton-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.skeleton-stat .skeleton-number {
+  width: 60px;
+  height: 2rem;
+}
+
+.skeleton-stat .skeleton-label {
+  width: 80px;
+  height: 0.8rem;
+}
+
+.skeleton-booking,
+.skeleton-absence {
+  margin-bottom: 1rem;
+}
+
+.skeleton-booking .card-body,
+.skeleton-absence .card-body {
+  padding: 1rem;
+}
+
+/* Fade in animation for loaded content */
+.fade-in-content {
+  animation: fadeInContent 0.3s ease-out;
+}
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
